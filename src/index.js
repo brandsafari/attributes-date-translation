@@ -87,4 +87,25 @@ window.Webflow.push(() => {
 
    convertToLocal("m", allDates)
    convertToLocal("d", allDays)
+
+   // Compatibility with Finsweet CMS Load
+   window.fsAttributes ||= []
+   window.fsAttributes.push([
+      "cmsload",
+      (listInstances) => {
+         for (const li of listInstances) {
+            // The `renderitems` event runs whenever the list renders items after switching pages.
+            li.on("renderitems", () => {
+               const listElement = li.list
+               if (!listElement) return
+
+               const allDates = Array.from(listElement.querySelectorAll(".dateclass"))
+               const allDays = Array.from(listElement.querySelectorAll(".dayclass"))
+
+               convertToLocal("m", allDates)
+               convertToLocal("d", allDays)
+            })
+         }
+      },
+   ])
 })
