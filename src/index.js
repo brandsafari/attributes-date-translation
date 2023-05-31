@@ -82,8 +82,14 @@ window.Webflow.push(() => {
       })
    }
 
-   const allDates = Array.from(document.querySelectorAll(".dateclass"))
-   const allDays = Array.from(document.querySelectorAll(".dayclass"))
+   const allDates = [
+      ...Array.from(document.querySelectorAll(".dateclass")),
+      ...Array.from(document.querySelectorAll("[brs-datetranslation='date']")),
+   ]
+   const allDays = [
+      ...Array.from(document.querySelectorAll(".dayclass")),
+      ...Array.from(document.querySelectorAll("[brs-datetranslation='day']")),
+   ]
 
    convertToLocal("m", allDates)
    convertToLocal("d", allDays)
@@ -99,8 +105,14 @@ window.Webflow.push(() => {
                const listElement = li.list
                if (!listElement) return
 
-               const allDates = Array.from(listElement.querySelectorAll(".dateclass"))
-               const allDays = Array.from(listElement.querySelectorAll(".dayclass"))
+               const allDates = [
+                  ...Array.from(document.querySelectorAll(".dateclass")),
+                  ...Array.from(document.querySelectorAll("[brs-datetranslation='date']")),
+               ]
+               const allDays = [
+                  ...Array.from(document.querySelectorAll(".dayclass")),
+                  ...Array.from(document.querySelectorAll("[brs-datetranslation='day']")),
+               ]
 
                convertToLocal("m", allDates)
                convertToLocal("d", allDays)
